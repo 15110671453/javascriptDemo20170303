@@ -1,0 +1,60 @@
+<!-- //html:4s -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>javascript库 封装登录弹出框 加拖拽</title>
+<!-- /*浏览器调试 如何检查css样式是否引用成功*/ -->
+	<link rel="stylesheet" href="./demo3.css">
+    <link rel="stylesheet" href="./demo2.css">
+    <link rel="stylesheet" href="./demo4.css">
+    <link rel="stylesheet" href="./demo5.css">
+      <script type="text/javascript" src="./tool.js"></script>
+  <script type="text/javascript" src="./base.js"></script>
+	<script type="text/javascript" src="./demo5js.js"></script>
+ 
+</head>
+<body>
+ 
+  <div id='header'> 
+      <div class="logo"><img src="./qqlogin.png" alt=""> </div>
+      <div class="personalcenter">个人中心
+        <ul class="member-ul">
+            <li><a href="">设置</a> </li>
+            <li><a href="">换肤</a></li>
+            <li><a href="">帮助</a></li>
+            <li><a href="">退出</a></li>
+        </ul>
+
+      </div>
+      <div class="login">登录</div>
+      <div class="pp">
+          <p>  这样会有一个问题 当鼠标 出了个人中心的 区域时 ul 隐藏 而当鼠标在ul区域时 不隐藏 ；无法实现
+      发现 鼠标一 离开个人中心 不管鼠标在不在 ul 上 都隐藏 解决方案： 将ul放到 个人中心的 div
+       <!--    <ul>
+        <li><a href="">设置</a> </li>
+        <li><a href="">换肤</a></li>
+        <li><a href="">帮助</a></li>
+        <li><a href="">退出</a></li>
+      </ul> -->
+          </p>
+      </div>
+  <div id="login2">
+    <h2> <img src="./qq.png" alt="" class="close"> 网站登录</h2>
+    <div class="user">账号:
+    <input type="text" name="user" class="text" value="请输入账号"/>
+    </div>
+    <div class="pass">密码:
+    <input type="password" name="pass" class="text" value="请输入密码">
+    </div>
+    <div class="button" >
+    <input type="button" class="submit" value="登录">
+    </div>
+    <div class="other"> 注册新用户|忘记密码? </div>
+  </div>
+ <!--  //遮罩 -->
+  <div id="screen"></div>
+
+    
+</body>
+</html>

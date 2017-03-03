@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>数据类型</title>
+</head>
+<body>
+学习要点 typeof 操作符 Undefined 类型
+typeof 用来检测变量的数据类型 对于值或变量使用typeof操作符会返回如下字符串
+undefined 未定义 
+boolen 布尔值 
+string 字符串 
+number 数值 
+object 对象或null
+前面五个是数据类型 最后这个不是数据类型
+function 函数
+
+<script type="text/javascript">
+
+var box={};
+//空的对象 表示这个对象创建了 里面没有东西；
+alert(box);
+//空对象 表示没有创建 就是一个null  box=null 数据类型 是Null类型 但是返回的字符串是Object
+alert(typeof(box));
+//box是undefined类型  值是undefined 类型返回的字符串是undefined
+
+function box2()
+{
+	var sss='liyanhong';
+}
+alert(box2);
+alert(typeof(box2));
+ box=null;
+ alert(box);
+
+ box = {
+  x:1,
+  y:2
+ }
+ alert (box);
+
+
+</script>
+Undefined 类型 没初始化的变量 就是这个类型； 用于区分空对象和未经初始化的变量；
+alert(age)会报错  但是 alert(typeof(age)) 却是undefined值 需要注意；
+未初始化的变量 和 根本不存在的变量 也是不一样的（根本执行不下去 会报错 调试debug）；
+
+Null类型
+typeof 操作符 检测null会返回Object 
+if(box != null)
+{
+  alert('对象已经创建成功');
+}
+var box = null;这个表示 你还没有创建对象 但先声明了对象引用而必须初始化的结果
+//你还没有来的及创建对象 先声明一个对象的变量放在那边 默认初始化为null
+
+var box = null;
+box = {
+ x:1,
+ y:2
+}
+alert (box);
+
+
+alert(undefined == null);//他们都是空的 所以理所当然相当
+alert(undefined === null);数据类型也必须相等才可以
+alert(typeof undifined == typeof null);
+
+var box = true;
+alert(box == 1);
+alert(typeof box == typeof 1);
+
+var box ='';
+强制转换
+alert(Boolen(box)); 打印出false 但是却字符串不为空时为 true
+
+var box2='';
+if(box2)
+{
+  真
+}else
+{
+	假
+}
+隐式转换 中 其他类型 转换为Boolen的规则：
+String类型数据   任何非空字符串 都换转换为真 true
+Number类型数据     任何0类型的数值 都会转换为false 无穷大NaN
+Object任何对象   任何对象（空的对象） 都转换为真  但是null转换为false
+Undefined 只能返回假false  只要不声明 或声明未初始化 都返回false
+
+
+
+
+Number类型
+
+Number类型 数值字面量的表示格式
+var num = 10;
+var num2 = 070 ;八进制； 输出都是按照十进制输出 是56；
+var num3 =079;无效八进制  会自动去掉前面的0 输出79；
+var num4 = 0xA; 十六进制 输出10；
+var num5 = 0x1f ;十六进制 输出
+二进制 么有。。。。
+浮点类型 没有什么进制
+
+对于过大或过小的数值 可以用科学计数来表示
+var num6=4.12; 输出4.12
+var  num7=4.12e3 ;输出4120
+var num8=4.12e-9; 输出什么呢 原样输出
+var num9 =0.000000000412;会输出什么;浮点数 最高精度17位
+var num10 =0.1+0.2;
+var num11=100e100;
+var num12=100e1000; 输出Infinity正无穷
+var num13=－100e1000; 输出－Infinity负无穷
+alert(Number.POSITIVE_INFINITY);
+alert(Number.NEGATIVE_INFINITY);
+isFinite 函数 来判断 数值是否 超过范围
+
+var num14=12/0; infinity
+var num15=0/0 NaN not a number
+alert(Number.NaN);
+
+类型转换中 其他类型转换位Number类型 问题
+Number(true) //1 Boolen类型的true 和 false分别转换成1和0
+Number(25)//25 数值类型直接返回
+Number(null)//0 空对象返回0
+Number(undefined) //NaN undefined返回NaN
+Number('0456') 字符串转换为Number 会有几种情况
+八进制字符串 会去掉前导0
+Number('08.90')浮点数 会去掉前导 后导0
+Number('leee123')不是只包含数字的字符串 会返回NaN
+Number('');空字符串 会返回0
+var box
+{
+
+}
+Number(box);返回NaN
+var box
+{
+  toString:function()
+  {
+  	return '456';
+  }
+
+}
+Number(box);返回456
+
+var box
+{
+  toString:function()
+  {
+  	return null;
+  }
+
+}
+Number(box);返回0
+
+由于Number函数在转换字符串为Number时比较复杂 且不合理 
+所以常用parseInt来转换字符串至数值
+注意parseInt 只能转换字符串
+转换 undefined null boolen 都会返回NaN
+
+
+parseInt('lee123yyy');NaN如果字符串第一个不是数字就会返回NaN
+parseInt('12lee2222')；返回12；
+parseInt('56.12');返回56；
+parseInt('070');56这个函数会将八进制转换为十进制输出
+parseInt('0xA');10
+parseInt('1f',16);十六进制返回该数值 不要0x前导
+parseInt('0111010010',2);
+//处理浮点数字符串  
+parseFloat('0xA') 输出0 不认16进制
+parseFloat('1.234e7');科学计数转换为普通值输出
+
+
+
+字符串数据类型
+ 单引号字符串 与 双引号 字符串 只要成对出现就没有问题
+ 但是在php中 双引号 与 单引号 处理的方式会不一样 需要注意
+
+在ECMA中 单引号 双引号 处理方式一样
+var  str='lwwww\neeee';会转义 而不是原样输出
+转移序列 转义字符
+这里提一下 unicode字符
+var str2='\u03a3'; 会转义输出转义后的值
+数值 转换为字符串类型
+var box = true;
+alert(box.toString());
+var box = 10;
+alert(box.toString());默认十进制
+alert(box.toString(2));2进制 1010
+alert(box.toString(8));8进制输出 12
+alert(box.toString(10));10进制输出 10
+alert(box.toString(16));16进制输出 a
+
+var box2;没有初始化
+alert(box2.toString()); 报错无法执行 
+var box3=null;没有初始化
+alert(box3.toString()); 报错无法执行 
+
+var box4;
+alert(String(box4)) //输出 'null'; 但是typeof 已经是string类型
+
+
+Object类型
+创建方式一：
+var box =null;
+var box ={};对象字面量的创建方法
+创建方式二：
+对象其实是一组数据和功能的集合 对象可以通过执行new操作符后跟要创建
+的对象类型的名称来创建
+var box = new Object();
+alert(box); 输出［Object object］ ;
+
+var box = new Object(2);
+alert(box);输出2； 因为内部有toString实现 类型是Object
+var age = 100;
+alert(box+age); 输出102 竟然对象和数值可以进行 相加
+var box = new Number(60); 输出60  类型是Object类型  需要注意
+这种方法也是创建一个数值对象  
+ var box = new String('lee');输出lee 类型却是Object类型 
+ boolen 也是这个逻辑
+ var box = new Boolen(true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

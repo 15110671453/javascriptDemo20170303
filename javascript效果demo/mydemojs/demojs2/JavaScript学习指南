@@ -1,0 +1,35 @@
+什么是javascript
+  具有面向对象的 解释性的程序设计语言 ；是直接读代码 就执行
+  不像java要编译执行
+  它是基于对象和事件驱动开发并具有相对安全性的客户端脚本语言；
+  脚本语言 就是不像java一样需要sdk java环境等就可以运行（只是浏览器都嵌入式了script环境）；
+javascript 松散型 数据类型 弱类型
+
+javascript的对象把属性名映射为任意的属性值
+
+javascript的继承机制 是基于原型的 不像java c++ 怎么解；
+
+C－－ 嵌入式脚本语言 不需要环境 python呢；
+
+网景的script IE微软的script CEnvi的script 不能；
+
+ECMAScript
+
+文档对象模型DOM 使用script 操作dom 是关键；
+浏览器对象模型BOm  网景与火狐有javascript版本 从客户端 做到服务器；
+
+javascript诞生于1995年 当时是为了验证表单输入的验证性 因为javascript问世之前 当时是电话拨号
+上网的年代 服务器验证数据带宽不够；
+
+script 标签是在html中嵌入script的主要方法
+charset 可选 很少使用 主要为src资源指定字符集
+defer 可选 表示脚本可以延迟到html文档加载完毕之后显示之后再执行 但是大多数浏览器不支持
+现在解决办法 是把js代码放到文档最后
+src 可选 包含要执行代码的外部文件
+type 必需 可以看作是language的替代品 type＝“text/javascript”;
+
+
+
+第三章 语法 关键字 保留
+
+

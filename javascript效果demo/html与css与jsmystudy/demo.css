@@ -1,0 +1,23 @@
+#box
+{
+	font-size: 16px;
+
+}
+.a{
+
+	color: red;
+}
+.b
+{
+
+	background: #ccc;
+}
+.c
+{
+  font-weight: bold;
+  color: green;
+}
+.d
+{
+  text-decoration: underline;
+}

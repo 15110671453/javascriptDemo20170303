@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>数组和对象</title>
+</head>
+<body>
+    Object类型  Array类型（也属于对象类型 属于引用类型）<br/>
+    ECMA中 引用类型 与 作用域；<br/>
+    对象是一种类型 即引用类型；<br/>
+    对象是一种数据结构 用于将数据与功能组合在一起 常常被称为类<br/>
+    但不具备高级语言中 所支持的类的特点 比如 继承 多态 接口等特点<br/>
+   Object类型 使用对象字面量来声明  或者使用new Object()来实现<br/>
+   对象都包含那些元素  第一：属性（字段）第二 方法（函数）<br/> 
+
+	 <script type="text/javascript">
+	  //对象的创建 以及对象的属性的创建
+	  
+    var box = new Object();
+    box.name='李彦辉';
+    box.age=22;
+    //new关键字可以省略
+      var box2 = Object();
+    box2.name='李彦辉';
+    box2.age=22;
+   // 字面量创建对象
+    var box3 = {};
+    var box3 = {
+    		name:'李彦宏',
+              age:40	
+    };
+    var box3 = {
+    		'name':'李彦宏',
+              'age':40
+    };
+    //字面量创建对象
+      var box5 = {};
+    //普通方式创建属性
+    box5.name=' liyanhong';
+    box5.age=20;
+    
+    //输出调用 对象的属性
+    alert(box5.name);
+    alert( box5['name']);
+ 
+    //给对象添加方法
+    
+    function objrun(){
+    	return '123';
+    }
+    box5.run=objrun;
+    alert(box5.run);
+    
+    
+    var box6={
+    		'name':'李彦宏',
+    'age':20,
+    run:function()
+    {
+    	return 'runfunction';
+    }
+    		
+    		
+    }
+    
+    
+    alert(box6.run);
+    alert(box6.run());
+    
+    
+    //删除属性  delete box6.name;
+    function box222(name,age,height,address,love)
+    {
+    	alert(name);
+    	alert(age);
+    }
+    box222('李彦辉',28,'江苏盐城','打球');
+    
+    function boxObj(obj)
+    {
+    	if(obj.love!=undefined)
+    		{
+    		alert(obj.love);
+    	}
+    	alert(obj.name);
+    	
+    }
+    var obj={
+    		'name':'李彦宏',
+    		age:20,
+    		height:178,
+    		address:'江苏盐城',
+    }
+    boxObj(obj);
+   boxObj({
+		'name':'李彦宏',
+		age:20,
+		height:178,
+		address:'江苏盐城',
+});//匿名对象 传参
+ 
+ 
+	 </script>
+    
+
+</body>
+</html>

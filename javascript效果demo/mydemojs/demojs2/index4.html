@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>运算符</title>
+</head>
+<body>
+  描述一组 用于操作数据值的运算符 包括 一元运算符 布尔运算符 
+  算术运算符 关系运算符 三元运算符 位运算符 赋值运算符
+  包括 字符串 数值 布尔值 对象  
+  应用于对象时通常调用对象的valueof()
+  和toString()方法，以便取得适合的值
+
+
+  ECMA中的运算符 什么是表达式  
+  最简单的表达式是 字面量表达式 或者变量名
+  通过合并简单的表达式创建的表达式是复杂表达式
+  box+5.9 
+  typeof(box) 查看数据类型表达式
+  box>8 逻辑运算表达式
+  单一字面量 和 组合字面量 都以称为表达式
+   
+   递增与递减
+   前置递增 
+   var box=100;
+   ++box;
+   alert(box);输出101；
+   var box=100;
+   box++;
+   alert(box);输出100；
+   
+   <script type="text/javascript">
+   
+   var box=100;
+   var age=++box;
+   alert(age);//输出101
+   alert(box);//输出101
+   var box2=100;
+   var age2=box2++;
+   alert(box2);//输出101；
+   alert(age2);//输出100
+   
+   var str='189';
+   str++;
+   alert(str);
+   //如果对数值字符串加加 会有隐含的数据类型转换
+   
+   var boolS=true;
+   boolS++;
+   alert(boolS);
+   
+   var obj={};
+   obj++;
+   alert(obj); 返回NaN;
+   如果对象中设置 valueOf 或toString 会成功  但是如果返回的是一个非数值的字符串依旧会NaN
+   
+   var obj2={
+		   valueOf:function()
+		   {
+			   return '111';
+		   }
+		   
+   };
+   obj2++;
+   
+   alert(obj2++);
+   //取正 取负 运算符
+   // 加法运算符 变为 字符串连接符
+   var numS = 100 + '100';  //输出100100
+   var numS1 = 10 + {};//typeof是string类型
+   var numS2 = 10+{
+	   toString:function()
+	   {
+		   return 20;
+	   }
+   };    //输出30  如果对象toString返回的是数值 就按照数值加法运算30；
+   //如果返回'20' 就按照字符串连接符操作
+   
+   
+   //乘法运算符 ＊ 除法运算符 ／ 取余运算符 %
+   
+   
+   //关系运算符
+   
+   
+   
+   
+   
+   
+   
+   </script>
+</body>
+</html>

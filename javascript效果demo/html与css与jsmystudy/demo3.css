@@ -1,0 +1,107 @@
+#header .login
+{
+	float: right;
+	width: 35px;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+	color: #000;
+/*	background: red;*/
+
+}
+#login2
+{
+	/*登录框  为了登录框位置可以便于调节 我们使用绝对
+定位absolute 
+	*/
+	width: 350px;
+	height: 250px;
+	border: 1px solid #ccc;
+	position: relative;
+	top: 30px;
+	display: none;
+	/*为了避免遮罩层颜色不干扰我们这层 将背景色设为白色*/
+	background: #fff;
+	z-index: 9999;
+
+}
+#login2 h2
+{
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 14px;
+	/*字间距*/
+	letter-spacing: 1px;
+	color:#666;
+	background: url(./) repeat-x;
+	margin: 0;
+	padding: 0;
+
+
+
+}
+#login2 h2 img
+{
+	float: right;
+	position: relative;
+	top: 14px;
+	right: 8px;
+	cursor: pointer;
+}
+#login2 div.user ,#login2 div.pass
+{
+	font-size: 14px;
+	color: #666;
+	padding:5px 0;
+	text-align: center;
+
+}
+#login2 input.text
+{
+	width: 200px;
+	height: 25px;
+	border: 1px solid #ccc;
+	background: #fff;
+	font-size: 14px;
+
+}
+#login2 .button
+{
+	text-align: center;
+	/*上下为10 左右为0*/
+	padding: 10px 0;
+
+}
+#login2 input.submit
+{
+	width: 107px;
+	height: 30px;
+	background: url() no-repeat;
+	/*border: none;*/
+    cursor: pointer;
+
+}
+#login2 .other
+{
+	text-align: right;
+	padding:15px 10px;
+	color: #666;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

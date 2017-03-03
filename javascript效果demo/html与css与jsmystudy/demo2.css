@@ -1,0 +1,123 @@
+body
+{
+	/*去掉内外边距*/
+	margin: 0;
+	padding: 0;
+	/**/
+/*	background: url(./) background-repeat: repeat-x;*/
+
+	font-size: 13px;
+	color: #ccc; 
+}
+#header
+{
+	width: 100%;
+	height: 30px;
+	/*居中*/
+	margin: 0 auto;
+    background: #ccc;
+    position: absolute;
+}
+#header .logo
+{
+	width: 100px;
+	height: 30px;
+	float: left;
+}
+#header .logo img
+{
+	display: block;
+}
+#header .personalcenter
+{
+   width: 150px;
+   height: 30px;
+
+   float: right;
+   line-height: 30px;
+   color: #000;
+ 
+   background: url(./qq.png)  no-repeat 60px  center;
+	/*加手型*/
+	cursor: pointer;
+	position: relative;
+}
+ul
+{
+	margin: 0;
+	padding: 0;
+	/*默认先江ul隐藏*/
+	display: none;
+}
+li
+{
+	list-style: none;
+}
+
+#header ul
+{
+	/*绝对定位 在浏览器缩放时有问题 缩小时 看不到
+	我这里绝对定位 是从右侧算起 倒没遇到这一问题
+	建议使用 相对定位 在父级找到相对点（在ul放到个人中心后）
+	然后 下边使用left: 0px;
+	*/
+	position: absolute;
+	top: 30px;
+	/*right: 50px;*/
+	left: 0px;
+	/*float: left;*/
+	background: #fbf7e1;
+	width: 100px;
+	height: 110px;
+	border: 1px solid #999;
+	/*去掉上边的边框*/
+	border-top: none; 
+	/*padding 上右下左*/
+	 padding: 10px 0 0 0;
+}
+
+#header ul li
+{
+	height: 25px;
+/*行高*/
+	line-height: 25px;
+/*文本偏离左侧20px */
+	text-indent: 30px;
+}
+#header ul li a
+{
+	display:block;
+	text-decoration: none;
+	color: #333;
+	/*background: url(./)  no-repeat left center;*/
+	background: url(./qq.png)  no-repeat 10px 45%;
+}
+
+#header ul li a:hover
+{
+  background: #fc0;
+}
+#header .pp
+{
+	
+    top: 30px;
+	position: absolute;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

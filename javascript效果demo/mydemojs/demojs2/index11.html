@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BOM对象的调用</title>
+</head>
+<body>
+   <script type="text/javascript">
+   
+/*    setTimeout("alert('Leet')",2000);//2秒后执行第一个参数的代码块 */
+   
+   
+/*    function box()
+   {
+	   alert('函数的代码块  解释执行 所以调用box alert 出来 竟然是函数代码');
+	  
+   }
+   var timeId =setTimeout(box,2000);//2秒后执行第一个参数的代码块
+   //这个函数返回一个超时调用的ID
+   alert(box);
+   clearTimeout(timeId); */
+   
+/*    var num =0 ;
+   var max=5;
+   var id = null;
+   function box22(){
+   	num++;
+   	//这里可以做定时功能
+   	document.getElementById('a').innerHTML+=num;
+   	if(num==max)
+   		{
+   		clearInterval(id);//this 关闭不了
+   		alert('5秒到了');
+   		
+   		}else
+   			{
+   			
+   			}
+   	
+   	
+   }
+   id=setInterval(box22,1000); */
+   
+   //真正开发中 我们使用超时调用  模拟间歇调用
+   
+      var num =0 ;
+   var max=5;
+   function box22(){
+   	num++;
+   	//这里可以做定时功能
+   	document.getElementById('a').innerHTML+=num;
+   	if(num==max)
+   		{
+   	
+   		alert('5秒到了');
+   		
+   		}else
+   			{
+   			setTimeout(box22,1000);
+   			}
+   	
+   	
+   }
+   setTimeout(box22,1000);
+   
+/*    location.href='http://www.baidu.com';//重定向跳转 location.assign*/
+/*     location.replace='http://www.baidu.com';//这个跳转出去 不能返回 不能使用后退键
+ * location.reload();刷新 重新加载页面 会受本地缓存干扰；location.reload(true);刷新 真正刷新
+ */
+/*    function getArgs()
+   {
+	   var args=[];
+	   var qs= location.search.length>0?location.search.substring(1):'';
+	   var items= qs.split('&');
+	   var item = null,name=null, value =null;
+	   
+	   for(var i=0;i<items.length;i++)
+		   {
+		   item = items[i].split('=');
+		   name =item[0];
+		   value= item[1];
+		   args[name]=value;
+		   }
+	   return args;
+   }
+   
+   
+   var arr=getArgs(); */
+   function baidu()
+   {
+	   location.replace('http://www.baidu.com');
+   }
+   
+   </script>
+	
+	<div id = 'a'> </div>
+	  <a href='javascript:baidu()'>超链接</a>
+
+			
+
+</body>
+</html>
