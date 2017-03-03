@@ -255,6 +255,41 @@ function removeEvent(obj,type,fn)
  }
 
 
+//浏览器检测
+(function (){
+ //浏览器检测
+ window.sys = {};//让外部可以访问 保存浏览器信息
+ //获取浏览器信息 浏览器名称 加 版本
+ var ua = navigator.userAgent.toLowerCase();
+ var s;
+ // ua.match(/msie ([\d.]+)/);//msie 7.0,7.0
+
+ alert(ua);
+ if ((/msie ([\d.]+)/).test(ua)) {
+ 	s = ua.match(/msie ([\d.]+)/);
+ 	sys.ie=s[1];
+ }
+  if ((/firefox\/([\d.]+)/).test(ua)) {
+ 	s = ua.match(/firefox ([\d.]+)/);
+ 	sys.firefox=s[1];
+ }
+  if ((/chrome\/([\d.]+)/).test(ua)) {
+ 	s = ua.match(/chrome\/([\d.]+)/);
+ 	sys.chrome=s[1];
+ }
+ if ((/opera\/.*version\/([\d.]+)/).test(ua)) {
+ 	s = ua.match(/opera\/.*version\/([\d.]+)/);
+ 	sys.opera=s[1];
+ }
+ if ((/version\/([\d.]+).*safari/).test(ua)) {
+ 	s = ua.match(/version\/([\d.]+).*safari/);
+ 	sys.safari=s[1];
+ }
+
+  alert(sys.safari);
+})();
+
+//三元操作符
 
 
 
