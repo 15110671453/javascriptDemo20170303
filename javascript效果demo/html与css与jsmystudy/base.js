@@ -147,7 +147,7 @@ Base.prototype.click=function(fn)
  	// body...
  	var node = null;
  	if (arguments.length == 2) {
- 		//这里只针对 用id 来限定css 所在 区域  如果要更多适应范围 就会更复杂
+ 		//这里只针对 用id 来限定要处理的css 所在 区域  如果要更多适应范围 就会更复杂
  		node = document.getElementById(idName);
  	}else
  	{
