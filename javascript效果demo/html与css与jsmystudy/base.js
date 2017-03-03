@@ -24,27 +24,20 @@ var $=function() {
    return	new Base();
 };
 */
-var $ =function(_this) {
+var $ =function(args) {
 	// body...
-   return	new Base(_this);
+   return	new Base(args);
 };
 
 
 /*这里 将elements通过原型共享 导致一些 
 问题 将其移动到 base的创建方法中*/
 // Base.prototype.elements=[];
-function Base(_this) {
+function Base(args) {
 	// body...
 	//创建一个数组 来保存获取的节点和节点数组
 	this.elements=[];
-	if (_this != undefined)
-	 {
-	 	/*
-	 	_this 对象 区别 ，undefined是一个对象 这里的undefined是没有传递值的undefined
-	 	区别 typeof 获取到的带单引号的字符串undefined
-	 	*/
-	 	this.elements[0]=_this;
-	 }
+
 	//获取id节点
 	this.getid=function (id) {
 		// body...
@@ -63,6 +56,50 @@ function Base(_this) {
 		
 		return this;
 	}
+
+	if (typeof args == 'string') {
+	
+		switch(args.charAt(0))
+		{
+				
+			case '#':
+			   	
+			   	this.getid(args.substring(1));
+				
+				break;
+
+			case '.':
+			
+				
+				this.getClass(args.substring(1));
+			
+				
+				break;
+
+			default:
+			
+				
+				this.getTagName(args);
+			
+			break;
+
+		}
+
+	}else if (typeof args == 'object')
+	{
+		if (args) {
+			  if (args != undefined)
+				{
+	 	/*
+	 	_this 对象 区别 ，undefined是一个对象 这里的undefined是没有传递值的undefined
+	 	区别 typeof 获取到的带单引号的字符串undefined
+	 	*/
+	 		    this.elements[0]=args;
+	 			}
+		}
+	}
+	
+	
 
 }
 /*这里的this作用域 是window this代表window
@@ -108,6 +145,51 @@ Base.prototype.css=function (attr,value) {
 	
 	return this;
 
+}
+//设置CSS选择器子节点
+Base.prototype.find=function(str){
+	var childElements = [];
+	for (var i =0; i<this.elements.length; i++) {
+
+		switch(str.charAt(0))
+		{
+				
+			case '#':
+			   	
+			   	childElements.push(document.getElementById(str.substring(1)));
+				
+				break;
+
+			case '.':
+			
+				
+			var tags =	this.elements[i].getElementsByTagName('*');
+
+			for (var k = 0; k< tags.length; k++) {
+				if (tags[k].className == str.substring(1)) {
+					childElements.push(tags[k]);
+				}
+				
+			}
+			
+				
+				break;
+
+			default:
+			
+				
+			var tags =	this.elements[i].getElementsByTagName(str);
+
+			for (var k = 0; k< tags.length; k++) {
+				childElements.push(tags[k]);
+			}
+			
+			break;
+
+		}
+	}
+	this.elements=childElements;
+	return this;
 }
 //设置innerhtml
 Base.prototype.html=function(str)
@@ -162,7 +244,7 @@ Base.prototype.click=function(fn)
  	return this;
 
  }
-//获取某一个节点
+//获取某一个节点  并且返回Base对象[object object]
 Base.prototype.getElement = function(num)
 {
    //先中转一下
@@ -171,6 +253,14 @@ Base.prototype.getElement = function(num)
    this.elements=[];
    this.elements[0]=element;
    return this;
+}
+//获取某一个节点 并且返回这个节点对象 [ object HtmlSpanElement] [ object HtmlHeadingElement]
+Base.prototype.geteq = function(num)
+{
+ 
+   var element = this.elements[num];
+
+   return element;
 }
 
 
@@ -251,8 +341,11 @@ Base.prototype.removeRule=function(num,index)
 Base.prototype.hover = function (over,out) {
 	// body...
 	for (var i = 0; i <this.elements.length; i++) {
-		this.elements[i].onmouseover = over;
-		this.elements[i].onmouseout = out;
+		// this.elements[i].onmouseover = over;
+		// this.elements[i].onmouseout = out;
+		//传统事件绑定 改为现代事件绑定
+		addEvent(this.elements[i],'mouseover',over);
+		addEvent(this.elements[i],'mouseout',out);
 	}
 
 	return this;
@@ -284,8 +377,10 @@ Base.prototype.hidden = function () {
 //设置物体居中
 Base.prototype.center = function (wid,height)
 {
-	var top = (document.documentElement.clientHeight-height)/2;
-	var left = (document.documentElement.clientWidth-wid)/2;
+	// var top = (document.documentElement.clientHeight-height)/2;
+	// var left = (document.documentElement.clientWidth-wid)/2;
+	 var top = (getinner().height-height)/2;
+	 var left = (getinner().width-wid)/2;
 	for (var i = 0; i<this.elements.length; i++) {
 		this.elements[i].style.top = top+'px';
 		this.elements[i].style.left = left+'px';
@@ -299,7 +394,29 @@ Base.prototype.center = function (wid,height)
 
 Base.prototype.resize = function (fn) {
 	// body...
-	window.onresize = fn;
+
+	for (var i = 0; i < this.elements.length; i++) {
+		var element = this.elements[i];
+		// window.onresize=function(){
+		// 	fn();
+		// 	if (element.offsetLeft>getinner().width-element.offsetWidth) {
+		// 		element.style.left = getinner().width-element.offsetWidth+'px';
+		// 	}
+		// 	if (element.offsetTop>getinner().height-element.offsetHeight) {
+		// 		element.style.top = getinner().height-element.offsetHeight+'px';
+		// 	}
+		// }
+
+		addEvent(window,'resize',function(){
+				fn();
+			if (element.offsetLeft>getinner().width-element.offsetWidth) {
+				element.style.left = getinner().width-element.offsetWidth+'px';
+			}
+			if (element.offsetTop>getinner().height-element.offsetHeight) {
+				element.style.top = getinner().height-element.offsetHeight+'px';
+			}
+		});
+	}
 
 	return this;
 }
@@ -333,48 +450,156 @@ Base.prototype.unlock = function () {
 }
 
 //拖拽
-Base.prototype.drag = function () 
-{
-  /*第三版 封装拖拽*/
-  for (var i = 0; i <this.elements.length; i++) {
-		this.elements[i].onmousedown = function (e) {
-   // body...
 
-// 在mousedown时阻止默认行为 低版本火狐 空的div 拖动 有bug
-       predef(e);
-     var e = getevent(e);
-     var _this=this;
-     var diffx = e.clientX- _this.offsetLeft;
-     var diffy = e.clientY- _this.offsetTop;
-   document.onmousemove = function () {
-      // body...
-        var e = e||window.event;
-   var x = e.clientX;
-   var y = e.clientY;
-   _this.style.left=x-diffx+'px';
-   _this.style.top=y-diffy+'px';
 
-    }
-    document.onmouseup = function () {
-      // body...
-      this.onmousemove = null;
-      this.onmouseup = null;
+// Base.prototype.drag = function () 
+// {
+//   /*第三版 封装拖拽*/
+//   for (var i = 0; i <this.elements.length; i++) {
+// 		this.elements[i].onmousedown = function (e) {
+//    // body...
 
-    }
+// // 在mousedown时阻止默认行为 低版本火狐 空的div 拖动 有bug
+//        predef(e);
+//      var e = getevent(e);
+//      var _this=this;
+//      var diffx = e.clientX- _this.offsetLeft;
+//      var diffy = e.clientY- _this.offsetTop;
+//      if (typeof _this.setCapture!='undefined') {
+//      	_this.setCapture();
+//      }
 
-    };
-	}
-	return this;
+//     document.onmousemove = function () {
+//       // body...
+//        var e = e||window.event;
+//    var left = e.clientX-diffx;
+//    var top = e.clientY-diffy;
+//    if (left<0) {
+//    	left=0;
+
+//    }else if(left>getinner().width-_this.offsetWidth){
+//    	left=getinner().width-_this.offsetWidth;
+//    }
+//    if (top<0) {
+//    	top=0;
+//    }else if(top>getinner().height-_this.offsetHeight)
+//    {
+//    	top=getinner().height-_this.offsetHeight;
+//    }
+
+//    _this.style.left=left+'px';
+//    _this.style.top=top+'px';
+
+//     }
+//    document.onmouseup = function () {
+//       // body...
+//       this.onmousemove = null;
+//       this.onmouseup = null;
+//       if (typeof _this.releaseCapture !='undefined' ) {
+//       	_this.releaseCapture();
+//       }
+
+//     }
+//     //mousedown
+//    }
+  
+//   }
+// 	return this;
  
 
+// }
+
+
+//传统事件绑定改为现代事件绑定
+// Base.prototype.drag = function () 
+// {
+//   /*第三版 封装拖拽*/
+//   for (var i = 0; i <this.elements.length; i++) {
+// 		this.elements[i].onmousedown = function (e) {
+//    // body...
+
+// // 在mousedown时阻止默认行为 低版本火狐 空的div 拖动 有bug
+//        // predef(e);
+//        //我们这里不阻止默认行为就可以 正常在登录框 点击输入
+//        //之前之所以添加阻止默认行为 是因为空div无法拖拽的 解决
+
+//       if(trim(this.innerHTML).length == 0) predef(e);
+
+
+//      var e = getevent(e);
+//      var _this=this;
+//      var diffx = e.clientX- _this.offsetLeft;
+//      var diffy = e.clientY- _this.offsetTop;
+    
+//     if (e.target.tagName == 'H2') {
+// 		addEvent(document,'mousemove',move);
+//      	addEvent(document,'mouseup',up);
+//     }else{
+//     	removeEvent(document,'mousemove',move);
+//       removeEvent(document,'mouseup',up);
+//     }
+     	
+//      function move(e)
+//      {
+//      	 if (typeof _this.setCapture!='undefined') {
+//      	 	//捕获
+//      	_this.setCapture();
+//      }
+//      	    var e = e||window.event;
+//    var left = e.clientX-diffx;
+//    var top = e.clientY-diffy;
+//    if (left<0) {
+//    	left=0;
+
+//    }else if(left>getinner().width-_this.offsetWidth){
+//    	left=getinner().width-_this.offsetWidth;
+//    }
+//    if (top<0) {
+//    	top=0;
+//    }else if(top>getinner().height-_this.offsetHeight)
+//    {
+//    	top=getinner().height-_this.offsetHeight;
+//    }
+
+//    _this.style.left=left+'px';
+//    _this.style.top=top+'px';
+//      }
+   
+//    function up(e){
+//    	  // body...
+//       // this.onmousemove = null;
+//       // this.onmouseup = null;
+
+//       removeEvent(document,'mousemove',move);
+//       removeEvent(document,'mouseup',up);
+//       if (typeof _this.releaseCapture !='undefined' ) {
+//       	_this.releaseCapture();
+//       }
+//    }
+
+//     //mousedown
+//    }
+  
+//   }
+// 	return this;
+ 
+
+// }
+
+
+//插件入口
+//将drag做成插件
+//不同的插件通过名字和方法名传过来
+Base.prototype.extend = function(name,fn){
+	Base.prototype.name=fn;
 }
 
 
+function trim(str){
+	return str.replace(/(^\s*)|(\s*$)/g,'');
+}
 
-
-
-
-
+//强大的CSS选择器的封装
 
 
 

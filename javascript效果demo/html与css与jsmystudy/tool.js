@@ -145,7 +145,7 @@ function addEvent(obj,type,fn)
 //同一个执行函数进行屏蔽
 addEvent.equal = function (es,fn){
 
-	for (var in es)
+	for (var i in es)
 	{
 		if(es[i]==fn) return false;
 	}
@@ -153,7 +153,7 @@ addEvent.equal = function (es,fn){
 }
 //
 addEvent.exec=function (event){
-	var e= event|| window.event;
+	var e= event|| addEvent.fixEvent(window.event);
 	var es =this.events[e.type];
 	for (var i in es) {
 		// this.events[e.type][i].();
@@ -162,16 +162,39 @@ addEvent.exec=function (event){
 		es[i].call(this,e);
 	}
 }
+
+addEvent.fixEvent=function(event){
+		//这里由于是给event调用的 所以this这里是event
+	event.preventDefault=addEvent.fixEvent.preventDefault;
+	event.stopPropagation=addEvent.fixEvent.stopPropagation;
+	//事件的一个属性 修改属性名字为target 因为w3c用这个 这个属性代表 事件当前
+	//触发源在那个html节点上
+	event.target=event.srcElement;
+	return event;
+}
+addEvent.fixEvent.stopPropagation=function(){
+//取消冒泡IE
+
+this.cancelBubble = true;
+
+
+
+}
+addEvent.fixEvent.preventDefault=function(){
+	//取消默认行为 a标签跳转 改为事件
+	//这里由于是给event调用的 所以this这里是event
+	this.returnValue = false;
+}
 addEvent.ID = 1 ;
 //为每一个事件添加一个计数器 解决IE 第一步
 //现代事件绑定 IE 多次绑定 执行顺序 无法解决 第二 绑定删除 IE无法解决 第三 解决内存
 //传统事件绑定 实现
-function ieAddEvent
+function ieAddEvent()
 {
 
 }
 
-function ieRemoveEvent
+function ieRemoveEvent()
 {
 
 }
@@ -197,14 +220,22 @@ function removeEvent(obj,type,fn)
 
 	}else if(typeof obj.detachEvent != 'undefined')
 	{
-		for (var i in obj.events[type]) {
+		if(obj.events)
+		{
+			for (var i in obj.events[type]) {
 			if (obj.events[type][i]==fn) {
 				delete obj.events[type][i];
 			}
+			}
 		}
+		
 	}
 }
-
+/*
+冒泡例子 document 弹出 document 按钮 弹出 button 
+对 button 添加弹出事件 并且 禁止冒泡 点击按钮只弹出 button事件 
+否则 两个都要弹出事件都要执行
+*/
 // 阻止默认行为
  function predef(event)
  {

@@ -1,3 +1,10 @@
+
+// window.onscroll= function(){
+
+//   document.documentElement.scrollTop = 0;
+//   document.body.scrollTop=0;
+// }
+
 window.onload = function()
 {
   /*
