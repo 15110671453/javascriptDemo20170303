@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript函数</title>
+</head>
+<body>
+      函数的声明   函数的返回值  <br/>
+      函数本身不可以运行 必须调用才可以执行<br/>
+      函数 和 php 一样 调用和声明的顺序 没有先后一说；<br/>
+      
+      <script type="text/javascript">
+      
+      function box()
+      {
+    	  alert('我只有被调用才可以执行');//函数的声明 已经完成
+      }
+      
+       function box2(name,age)
+       {
+    	   alert('你的姓名是'+name+'年龄是'+age);
+       }
+       /* box2('liyanhui',22); */
+       
+       
+       function sss()
+       {
+    	   return 100;
+    	   
+       }
+       //函数没有设置形参
+       function box4()
+       {
+    	 /*   return arguments[0]+'|'+arguments[1]+'|'+arguments[2]; */
+    	 return arguments.length;
+       }
+      var str= box4('liyanhong',22,'wewe');
+      alert (str);
+      
+      
+      function box5()
+      {
+   	 /*   return arguments[0]+'|'+arguments[1]+'|'+arguments[2]; */
+   	    var sum =0;
+   	 for(var i=0;i<argumnets.length;i++){
+   		 sum+=arguments[i];
+   	 
+   	 
+   	 }
+   	 return sum;
+   		 
+      }
+      
+      
+      
+      //javascript不具备函数重载 （高级语言的 类 继承 多态 重载）
+     
+      
+      
+      
+      
+      </script>
+      
+      
+</body>
+</html>

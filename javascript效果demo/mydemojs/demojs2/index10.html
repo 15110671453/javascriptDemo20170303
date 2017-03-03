@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BOM对象</title>
+</head>
+<body>
+  //火狐不支持  火狐自己提供(苹果 和 google都支持)
+    window.screenLeft;
+    window.screenTop;
+  //IE不支持
+    window.screenX ;
+    window.screenY; 
+    
+  <script type="text/javascript">
+  
+  var leftX = typeof window.screenLeft == 'number'?window.screenLeft:window.screenX;
+  var leftY = typeof window.screenLeft == 'number'?window.screenTop:window.screenY;
+  //返回当前页面的视口 窗口页面的大小
+   var wid=  window.innerWidth;//窗口大小
+ var height =  window.innerHeight;
+  //google浏览器 不加边框 outer与inner都一样的值
+ var wid2 = window.outerWidth;//窗口＋边框的大小
+ var height2 = window.outerHeight;
+  
+  //跨浏览器获取视口（可视范围的页面窗口）
+  
+  
+  if(typeof wid!='number')
+	  {
+	  if(document.compatMode=='CSS1Compat')
+		  {
+		  width =document.documentElement.clientWidth;
+		  height=document.documentElement.clientHeight;
+		  }else
+			  {
+			  width =document.body.clientWidth;
+			  height=document.body.clientHeight; 
+			  }
+	  }
+  
+  //moveTo 移动窗口的位置
+  //resizeTo 调整窗口的大小
+  
+  </script>
+</body>
+</html>

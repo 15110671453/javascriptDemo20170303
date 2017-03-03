@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>浏览器对象模型</title>
+</head>
+<body>
+ 	BOM 浏览器对象模型 它提供了很多对象 用于访问浏览器的功能；
+ 	但是浏览器提供商都在做功能扩展 没有统一的标准；<br/>
+ 	windows  六大属性 （这六大属性 也是对象）<br/>
+ 	windows对象是最顶层的对象 window对象有六大属性 这六大属性也是对象<br/>
+ 	windows下的document属性 也是对象 并且document下有五大属性<br/>
+ 	document对象旗下的五大属性又是对象 <br/>
+ 	windows closed 当窗口关闭时返回为真<br/>
+ 	<script type="text/javascript">
+ 	
+/*  	//弹出警告框
+ 	alert('我是警告框');
+ 	//确定取消按钮
+ 	if(confirm('请选择'))//这里有确定和取消按钮 本身方法可以反回一个bool值
+ 		{
+ 		 alert('确定');
+ 		 //如果点击确定 返回true
+ 		}else
+ 			{
+ 			 alert('取消');
+ 			//如果点击取消 返回false
+ 			}
+ 	
+ 	
+ 	
+ var box = prompt('请输入一个数字',0)//第一个参数是说明title 第二个参数是 默认值 会返回用户输入的值
+ 	if(box!=null)
+ 		{
+ 		 alert(box);
+ 		} */
+//调出打印及查找对话框
+/* print(); */
+/* find();//safari无效？ */
+
+/* defaultStatus='bjcric' 默认状态栏初始值;
+status='xxx' 临时改变状态栏的值; 浏览器 左下角状态栏 safari不支持*/
+
+/* open(); *///导航到特定的url 也可以打开新的浏览器窗口
+//四个参数 第一个 要加载的url 2窗口的名称或窗口目标 3 一个特性的字符串(配置新建窗口的功能)
+/* open('http://www.baidu.com','targetName'); */
+//窗口的名称作用 一旦命名后 以后的每次刷新打开都会在这个窗口中加载 而不是一直新建窗口
+/* open('http://www.baidu.com',_blank);//一直新建窗口
+open('http://www.baidu.com',_parent);//在当前页面就重新打开了  不新建窗口 */
+
+//浏览器功能 设置中 开启 允许浏览器弹出窗口 
+/* open('http://www.baidu.com',_blank,width=400,height=400,top=100,left=100); */
+//open会返回新建窗口的windows对象
+ var box=window.open('http://www.baidu.com',_blank,width=400,height=400,top=100,left=100);
+ 
+ box.alert('我在新建窗口中弹出');
+
+
+
+ 	</script>
+
+</body>
+</html>

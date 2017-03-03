@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript中的数组</title>
+</head>
+<body>
+	array其实就是Object类型<br/>
+	创建array变量<br/>
+	
+	<script type="text/javascript">
+	
+	var arr = new Array();//声明一个数组
+	alert(typeof arr);//数组属于Object类型
+	//创建一个数组 并且 分配每一个下标的元素
+	var arr2= new Array('李彦辉',28,'江苏盐城');
+	alert(arr2);
+	alert(arr2[1]);
+	//创建一个数组 并指明数组的元素个数
+	var arr3 = new Array(10);
+	arr3[2]='li眼红';
+	alert(arr3);
+	//字面量的方式创建数组
+	var arr4=[];
+	 //字面量的方式创建数组 并且分配元素
+	 var arr5=['李彦宏',28,'jiangsuyancheng'];
+	 //数组使用索引下标 给数组分配元素
+	 var arr6=[];
+	 arr6[0]='李彦辉';
+	 arr6[1]=28;
+	 alert[arr6];//这里是索引下标 可以直接显示
+	 var arr7=[];
+	 arr7['name']='李彦辉';
+	 alert(arr7);//这里是字符串下标 不能直接显示
+	 alert(arr7.name)//这里可以显示出来 
+	 
+	 //创建一个数组 
+	 var arr8 = [
+	             {
+	            	 name:'李彦宏',
+	            	 age:28
+	             },
+	             [3,4,6,'江苏',new Object()],
+	             '计算机编程' ,
+	             25+25,
+	             new Array(1,2,3)
+	             
+	             
+	             ];
+	 
+	 alert(arr8);
+	 alert(arr8[0].name);
+	 
+	
+	
+	
+	
+	</script>
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+		
+		
+		
+		
+		
+
+</body>
+</html>
