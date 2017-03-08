@@ -1,0 +1,21 @@
+#screen
+{
+	/*加遮罩 必须用绝对定位才能 遮住 要不然就没有层次的感觉了*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*
+  这里写固定值时 有问题 在缩小的情况下使用 放大时 有白边
+  在放大的情况下使用 缩小时 出现滚动条
+  */
+  width: 100%;
+  height: 100%;
+
+  background: #000;
+  z-index: 9998;
+  /*IE 30显示度30% 100代表全显示*/
+  filter: alpha(opacity=30);
+    /* 0.3显示度30% 1代表全显示*/
+    opacity:0.3; 
+    display: none;
+}
